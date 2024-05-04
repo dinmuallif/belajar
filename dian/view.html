@@ -1,0 +1,58 @@
+<?php
+// Menghubungkan ke database
+include 'koneksi.php';
+$id = $_GET['nim']; // Menampung nim
+
+// Query untuk mengambil data
+$query = "SELECT * FROM sukematif WHERE nim = '$id'";
+$result = mysqli_query($koneksi, $query);
+
+// Memeriksa apakah ada data yang ditemukan
+if (mysqli_num_rows($result) > 0) {
+    echo "<h1>sukematif</h1>";
+    echo "<table border='1'>";
+    echo "<tr>
+            <th>email</th>
+            <th>tahunsekarang</th>
+            <th>nama</th>
+			<th>tempattgllahir</th>
+			<th>alamatdesakeluarahan</th>
+            <th>alamatkecamatankotakabupaten</th>
+            <th>fakultas</th>
+            <th>programstudi</th>
+            <th>nim</th>
+            <th>tahunakademik</th>
+            <th>semester</th>
+            <th>skma</th>
+          </tr>";
+
+    // Menampilkan data ke dalam tabel
+    while ($row = mysqli_fetch_assoc($result)) {
+        echo "<tr>";
+        echo "<td>" . $row['email'] . "</td>";
+        echo "<td>" . $row['tahunsekarang'] . "</td>";
+        echo "<td>" . $row['nama'] . "</td>";
+		echo "<td>" . $row['tempattgllahir'] . "</td>";
+		echo "<td>" . $row['alamatdesakeluarahan'] . "</td>";
+        echo "<td>" . $row['alamatkecamatankotakabupaten'] . "</td>";
+        echo "<td>" . $row['fakultas'] . "</td>";
+        echo "<td>" . $row['programstudi'] . "</td>";
+        echo "<td>" . $row['nim'] . "</td>";
+        echo "<td>" . $row['tahunakademik'] . "</td>";
+        echo "<td>" . $row['semester'] . "</td>";
+        echo "<td>" . $row['skma'] . "</td>";
+        echo "</tr>";
+    }
+
+    echo "</table>";
+    echo "<div style='margin-top: 50px;'>";
+    echo "<a href='surat keterangan mahasiswa aktif.php'>Kembali ke sukematif</a>";
+    echo "</div>";
+} else {
+    echo "Tidak ada data yang ditemukan.";
+}
+
+// Menutup koneksi database
+mysqli_close($koneksi);
+?>
+ss
